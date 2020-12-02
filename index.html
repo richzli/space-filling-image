@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Space Filling Image</title>
+
+        <link rel="stylesheet" href="style.css" />
+        <script src="index.js"></script>
+    </head>
+
+    <body>
+        <div id="upload">
+            <h2>Upload an image:</h2>
+
+            <div id="file-input">
+                <input type="file" id="img-input" />
+                <button onclick="doIt()">Start Transformation</button>
+            </div>
+        </div>
+        
+        <div id="results">
+            <canvas id="hilbert"></canvas>
+
+            <canvas id="z-order"></canvas>
+
+            <canvas id="peano"></canvas>
+        </div>
+    </body>
+</html>

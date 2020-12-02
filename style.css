@@ -1,0 +1,24 @@
+#upload {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+    margin: 0px auto;
+}
+
+#results canvas {
+    border: 1px solid black;
+    width: 512px;
+    height: 50px;
+
+    margin: 10px auto;
+}
+
+canvas {
+    margin: 10px;
+}
