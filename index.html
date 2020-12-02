@@ -2,26 +2,59 @@
     <head>
         <title>Space Filling Image</title>
 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="style.css" />
-        <script src="index.js"></script>
     </head>
 
     <body>
-        <div id="upload">
-            <h2>Upload an image:</h2>
+        <div class="container">
+            <div class="sidebar-container">
+                <div class="sidebar">
+                    <h1>Space-Filling Curve Image Unroller</h1>
 
-            <div id="file-input">
-                <input type="file" id="img-input" />
-                <button onclick="doIt()">Start Transformation</button>
+                    <h2>Upload an image:</h2>
+        
+                    <div class="file-input">
+                        <div>
+                            <button id="browse">Browse...</button>
+                            <span id="selected-file">No file selected.</span>
+                            <input type="file" style="display:none;" accept="image/*" id="img-input" />
+                        </div>
+                        
+                        <div>
+                            <button onclick="doIt()">Start Unrolling</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results-container">
+                <div class="input">
+                    <div class="input-group">
+                        <canvas id="original" class="input-image"></canvas>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="results-group">
+                        <h3>Z-order curve</h3>
+                        <canvas id="z-order" class="result-image"></canvas>
+                    </div>
+                    
+                    <div class="results-group">
+                        <h3>Hilbert curve</h3>
+                        <canvas id="hilbert" class="result-image"></canvas>
+                    </div>
+                    
+                    <div class="results-group">
+                        <h3>Peano curve</h3>
+                        <canvas id="peano" class="result-image"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div id="results">
-            <canvas id="hilbert"></canvas>
 
-            <canvas id="z-order"></canvas>
-
-            <canvas id="peano"></canvas>
-        </div>
+        <script src="index.js"></script>
     </body>
 </html>

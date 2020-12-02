@@ -1,24 +1,107 @@
-#upload {
-    width: 50%;
-    margin: 0 auto;
+:root {
+    background-color: lightgray;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
-#results {
+body, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+
+    height: 100%;
+}
+
+.sidebar-container {
+    height: calc(100%-40px);
+    width: 25%;
+
+    background-color: white;
+
+    padding: 20;
+    margin: 10 5 10 10 ;
+}
+
+.file-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-input div {
+    margin: 3 0;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+
+    border: none;
+    padding: 2 8 0 8;
+    background-color: lightgray;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.results-container {
+    height: calc(100%-40px);
+    width: 75%;
+
+    background-color: white;
+
+    padding: 20;
+    margin: 10 10 10 5;
+}
+
+.input {
+    width: 100%;
+}
+
+.input-group {
+    width: 256;
+    margin: 10 auto 50;
+}
+
+.results {
     display: flex;
     flex-direction: column;
 
-    width: 50%;
-    margin: 0px auto;
+    width: 100%;
 }
 
-#results canvas {
-    border: 1px solid black;
-    width: 512px;
-    height: 50px;
-
-    margin: 10px auto;
+.results-group {
+    width: 514;
+    margin: 10 auto;
 }
 
 canvas {
-    margin: 10px;
+    border: 1px solid black;
+}
+
+canvas.input-image {
+    width: 256;
+    height: 256;
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+canvas.result-image {
+    width: 512;
+    height: 50;
+
+    margin: 10 0;
 }
