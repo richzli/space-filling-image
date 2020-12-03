@@ -1,3 +1,15 @@
+var cvs = document.getElementById("original");
+var ctx = cvs.getContext("2d");
+
+var z_cvs = document.getElementById("z-order");
+var z_ctx = z_cvs.getContext("2d");
+
+var h_cvs = document.getElementById("z-order");
+var h_ctx = z_cvs.getContext("2d");
+
+var p_cvs = document.getElementById("z-order");
+var p_ctx = z_cvs.getContext("2d");
+
 document.getElementById("unroll").disabled = true;
 document.getElementById("browse").onclick = () => { document.getElementById('img-input').click(); };
 document.getElementById("img-input").onchange = () => {
@@ -7,8 +19,6 @@ document.getElementById("img-input").onchange = () => {
     var img = new Image();
     img.src = URL.createObjectURL(input);
     img.onload = () => {
-        var cvs = document.getElementById("original");
-        var ctx = cvs.getContext("2d");
         ctx.clearRect(0, 0, cvs.width, cvs.height);
         ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
     };
@@ -17,26 +27,13 @@ document.getElementById("img-input").onchange = () => {
 };
 
 function do_it() {
-    var cvs = document.getElementById("original");
-    var ctx = cvs.getContext("2d");
-
-    var z_cvs = document.getElementById("z-order");
-    var z_ctx = z_cvs.getContext("2d");
     z_ctx.clearRect(0, 0, z_cvs.width, z_cvs.height);
-
-    var h_cvs = document.getElementById("z-order");
-    var h_ctx = z_cvs.getContext("2d");
     h_ctx.clearRect(0, 0, h_cvs.width, h_cvs.height);
-
-    var p_cvs = document.getElementById("z-order");
-    var p_ctx = z_cvs.getContext("2d");
     p_ctx.clearRect(0, 0, p_cvs.width, p_cvs.height);
 
     for (var i = 0; i < 1024; ++i) {
         var [x, y] = z_order_coords(i);
-
         var color = ctx.getImageData(x, y, 1, 1).data;
-
         draw_stripe(z_ctx, i, color);
     }
 }
