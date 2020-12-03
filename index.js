@@ -4,11 +4,11 @@ var ctx = cvs.getContext("2d");
 var z_cvs = document.getElementById("z-order");
 var z_ctx = z_cvs.getContext("2d");
 
-var h_cvs = document.getElementById("z-order");
-var h_ctx = z_cvs.getContext("2d");
+var h_cvs = document.getElementById("hilbert");
+var h_ctx = h_cvs.getContext("2d");
 
-var p_cvs = document.getElementById("z-order");
-var p_ctx = z_cvs.getContext("2d");
+var p_cvs = document.getElementById("peano");
+var p_ctx = p_cvs.getContext("2d");
 
 document.getElementById("unroll").disabled = true;
 document.getElementById("browse").onclick = () => { document.getElementById('img-input').click(); };
@@ -48,6 +48,17 @@ function do_it() {
         var [x, y] = z_order_coords(i);
         var color = ctx.getImageData(x, y, 1, 1).data;
         draw_stripe(z_ctx, i, color);
+
+        [x, y] = hilbert_coords(i);
+        color = ctx.getImageData(x, y, 1, 1).data;
+        //console.log(x, y, i, color);
+        draw_stripe(h_ctx, i, color);
+    }
+
+    for (var i = 0; i < 729; ++i) {
+        var [x, y] = peano_coords(i);
+        var color = ctx.getImageData(x, y, 1, 1).data;
+        draw_stripe(p_ctx, i, color);
     }
 }
 
@@ -77,7 +88,51 @@ function z_order_coords(index) {
 }
 
 function hilbert_coords(index) {
-    return [0, 0];
+    
+    function h_recurse(idx, size, rot) {
+        if (size == 1) return [0, 0];
+
+        var quadrant = Math.floor(idx / (size * size / 4));
+        var position = idx % (size * size / 4);
+        //console.log(idx, size, rot, quadrant, position);
+        var [x, y] = [0, 0];
+
+        function rotate(xy, r) {
+            return;
+        }
+
+        switch (quadrant) {
+            case 0:
+                [x, y] = h_recurse(position, size / 2, (rot + 1 + (rot % 2) * 2) % 4);
+                break;
+            case 1:
+                [x, y] = h_recurse(position, size / 2, rot);
+                y += size / 2;
+                break;
+            case 2:
+                [x, y] = h_recurse(position, size / 2, rot);
+                x += size / 2;
+                y += size / 2;
+                break;
+            case 3:
+                [x, y] = h_recurse(position, size / 2, (rot + 3 + (rot % 2) * 2) % 4);
+                x += size / 2;
+                break;
+        }
+
+        switch (rot) {
+            case 0:
+                return [x, y];
+            case 1:
+                return [y, x];
+            case 2:
+                return [size - 1 - x, size - 1 - y];
+            case 3:
+                return [size - 1 - y, size - 1 - x];
+        }
+    }
+
+    return h_recurse(index, 32, 0);
 }
 
 function peano_coords(index) {
