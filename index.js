@@ -26,6 +26,19 @@ document.getElementById("img-input").onchange = () => {
     document.getElementById("unroll").disabled = false;
 };
 
+function load_sample() {
+    document.getElementById("selected-file").innerText = "sample.png";
+
+    var img = new Image();
+    img.src = "./sample.png";
+    img.onload = () => {
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
+        ctx.drawImage(img, 0, 0, cvs.width, cvs.height);
+    };
+
+    document.getElementById("unroll").disabled = false;
+}
+
 function do_it() {
     z_ctx.clearRect(0, 0, z_cvs.width, z_cvs.height);
     h_ctx.clearRect(0, 0, h_cvs.width, h_cvs.height);
@@ -40,7 +53,7 @@ function do_it() {
 
 function draw_stripe(ctx, x, color) {
     ctx.lineWidth = "1";
-    ctx.strokeStyle = "#" + color[0].toString(16) + color[1].toString(16) + color[2].toString(16) + color[3].toString(16);
+    ctx.strokeStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3] / 255})`;
     ctx.beginPath();
     ctx.moveTo(x, 0);
     ctx.lineTo(x, 49);
