@@ -12,6 +12,14 @@ h1 {
     margin-bottom: 1em;
 }
 
+h2 {
+    margin-bottom: 0.25em;
+}
+
+a {
+    text-decoration: none;
+    color: #AC91F7;
+}
 
 .container {
     display: flex;
@@ -28,12 +36,18 @@ h1 {
     background-color: white;
 
     padding: 20;
-    margin: 10 5 10 10 ;
+    margin: 10 5 10 10;
+}
+
+.text-section {
+    margin-bottom: 2em;
 }
 
 .file-input {
     display: flex;
     flex-direction: column;
+
+    margin-bottom: 2em;
 }
 
 .file-input div {
@@ -88,6 +102,9 @@ button:hover {
 
 canvas {
     border: 1px solid black;
+
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 canvas.input-image {
@@ -97,6 +114,10 @@ canvas.input-image {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+canvas#mini {
+    display: none;
 }
 
 canvas.result-image {

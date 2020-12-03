@@ -1,5 +1,7 @@
 <html>
     <head>
+        <meta charset="UTF-8">
+
         <title>Space Filling Image</title>
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,30 +28,46 @@
                             <button onclick="doIt()">Start Unrolling</button>
                         </div>
                     </div>
+
+                    <div class="text-section">
+                        <h2>What is this?</h2>
+
+                        <p>explanation here</p>
+                        <p>explanation 2 here</p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>How does it work?</h2>
+
+                        <p>explanation here</p>
+                        <p>explanation 2 here</p>
+                    </div>
+
+                    <h4>Check out the <a href="https://github.com/richzli/space-filling-image/">Github repository</a> here!</h4>
                 </div>
             </div>
             
             <div class="results-container">
                 <div class="input">
                     <div class="input-group">
-                        <canvas id="original" class="input-image"></canvas>
+                        <canvas id="original" class="input-image" width="32" height="32"></canvas>
                     </div>
                 </div>
 
                 <div class="results">
                     <div class="results-group">
                         <h3>Z-order curve</h3>
-                        <canvas id="z-order" class="result-image"></canvas>
+                        <canvas id="z-order" class="result-image" width="512" height="50"></canvas>
                     </div>
                     
                     <div class="results-group">
                         <h3>Hilbert curve</h3>
-                        <canvas id="hilbert" class="result-image"></canvas>
+                        <canvas id="hilbert" class="result-image" width="512" height="50"></canvas>
                     </div>
                     
                     <div class="results-group">
                         <h3>Peano curve</h3>
-                        <canvas id="peano" class="result-image"></canvas>
+                        <canvas id="peano" class="result-image" width="512" height="50"></canvas>
                     </div>
                 </div>
             </div>
