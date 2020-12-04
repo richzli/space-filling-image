@@ -93,7 +93,7 @@ button:hover {
 
     background-color: white;
 
-    padding: 150px 30px;
+    padding: 125px 30px;
     margin: 10px 10px 10px 5px;
 }
 
@@ -166,4 +166,6 @@ canvas {
 .square-results-group canvas.square-image {
     width: 255px;
     height: 255px;
+
+    margin: 10px 0px;
 }
