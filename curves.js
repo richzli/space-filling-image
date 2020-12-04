@@ -19,26 +19,27 @@ function hilbert_coords(index) {
     function h_recurse(idx, size, rot) {
         if (size == 1) return [0, 0];
 
-        var quadrant = Math.floor(idx / (size * size / 4));
-        var position = idx % (size * size / 4);
-        var [x, y] = [0, 0];
+        var halfsize = size / 2;
+        var quadrant = Math.floor(idx / (halfsize * halfsize));
+        var position = idx % (halfsize * halfsize);
+        var x, y = 0;
 
         switch (quadrant) {
             case 0:
-                [x, y] = h_recurse(position, size / 2, (rot + 1 + (rot % 2) * 2) % 4);
+                [x, y] = h_recurse(position, halfsize, (rot + 1 + (rot % 2) * 2) % 4);
                 break;
             case 1:
-                [x, y] = h_recurse(position, size / 2, rot);
-                y += size / 2;
+                [x, y] = h_recurse(position, halfsize, rot);
+                y += halfsize;
                 break;
             case 2:
-                [x, y] = h_recurse(position, size / 2, rot);
-                x += size / 2;
-                y += size / 2;
+                [x, y] = h_recurse(position, halfsize, rot);
+                x += halfsize;
+                y += halfsize;
                 break;
             case 3:
-                [x, y] = h_recurse(position, size / 2, (rot + 3 + (rot % 2) * 2) % 4);
-                x += size / 2;
+                [x, y] = h_recurse(position, halfsize, (rot + 3 + (rot % 2) * 2) % 4);
+                x += halfsize;
                 break;
         }
 
@@ -58,5 +59,70 @@ function hilbert_coords(index) {
 }
 
 function peano_coords(index) {
-    return [0, 0];
+    
+    function p_recurse(idx, size, dir) {
+        if (size == 1) return [0, 0];
+
+        var thirdsize = size / 3;
+        var nonant = Math.floor(idx / (thirdsize * thirdsize));
+        var position = idx % (thirdsize * thirdsize);
+        var x_delta = 0, y_delta = 0, dir_delta = 0;
+
+        switch (nonant) {
+            case 0:
+                break;
+            case 1:
+                dir_delta = 1;
+                y_delta = thirdsize;
+                break;
+            case 2:
+                y_delta = thirdsize * 2;
+                break;
+            case 3:
+                dir_delta = 3;
+                x_delta = thirdsize;
+                y_delta = thirdsize * 2;
+                break;
+            case 4:
+                dir_delta = 2;
+                x_delta = thirdsize;
+                y_delta = thirdsize;
+                break;
+            case 5:
+                dir_delta = 3;
+                x_delta = thirdsize;
+                break;
+            case 6:
+                dir_delta = 0;
+                x_delta = thirdsize * 2;
+                break;
+            case 7:
+                dir_delta = 1;
+                x_delta = thirdsize * 2;
+                y_delta = thirdsize;
+                break;
+            case 8:
+                dir_delta = 0;
+                x_delta = thirdsize * 2;
+                y_delta = thirdsize * 2;
+                break;
+        }
+
+        var [x, y] = p_recurse(position, thirdsize, (dir + dir_delta) % 4);
+        x += x_delta;
+        y += y_delta;
+
+        switch (dir) {
+            case 0:
+                return [x, y];
+            case 1:
+                return [size - 1 - x, y];
+            case 2:
+                return [size - 1 - x, size - 1 - y];
+            case 3:
+                return [x, size - 1 - y];
+        }
+    }
+
+    return p_recurse(index, 27, 0);
 }

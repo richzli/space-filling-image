@@ -87,12 +87,22 @@ button:hover {
     margin: 10px 10px 10px 5px;
 }
 
+.results-container-reverse {
+    height: calc(100%-40px);
+    width: 75%;
+
+    background-color: white;
+
+    padding: 150px 30px;
+    margin: 10px 10px 10px 5px;
+}
+
 .input {
     width: 100%;
 }
 
 .input-group {
-    width: 256px;
+    width: 50%;
     margin: 10px auto 50px;
 }
 
@@ -103,8 +113,21 @@ button:hover {
     width: 100%;
 }
 
-.results-group {
+.results-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    width: 100%;
+}
+
+.line-results-group {
     width: 514px;
+    margin: 10px auto;
+}
+
+.square-results-group {
+    width: 257px;
     margin: 10px auto;
 }
 
@@ -117,7 +140,7 @@ canvas {
     image-rendering: crisp-edges;
 }
 
-canvas.square-image {
+.input-group canvas.square-image {
     width: 255px;
     height: 255px;
 
@@ -126,13 +149,21 @@ canvas.square-image {
     display: block;
 }
 
-canvas#mini {
-    display: none;
+.input-group canvas.line-image {
+    width: 512px;
+    height: 50px;
+
+    margin: 10px auto;
 }
 
-canvas.line-image {
+.line-results-group canvas.line-image {
     width: 512px;
     height: 50px;
 
     margin: 10px 0px;
+}
+
+.square-results-group canvas.square-image {
+    width: 255px;
+    height: 255px;
 }

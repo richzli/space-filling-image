@@ -18,6 +18,10 @@ However, actually implementing this recursion was more difficult than expected. 
 
 Peano curves (or Hilbert II curves) are a third type of space-filling curve I found while doing some reading. Unlike the other two covers, Peano curves split the space up into powers of three, not two! This means that the image being 32x32 cannot fit a Peano curve perfectly. To account for this, I actually pretend the image is 27x27, and unroll the image using the approximate location of each pixel.
 
+The Peano curve code was also tricky in the sense that the recursive function took some time to work out. I think it produces the nicest image of the three, though. There's a clear movement from left to right of the image, and the white part in the middle of the sample image is pretty much in the center of the unrolled image, as well.
+
+Of course, the Peano curve doesn't see as many applications probably because it works in powers of 3, not 2, which is not ideal for binary-based systems like computers. However, it's still a pretty neat visualization.
+
 ## the reverse direction
 
-Because space-filling curves are bijections, we can easily apply the same function in the reverse direction. In this case, the image is resized to 1024x1 (but stretched out to a 512x50 display for viewing convenience).
+Because space-filling curves are bijections from the line onto the plane, we can easily apply the same function in the reverse direction. In this case, the image is resized to 1024x1 (but stretched out to a 512x50 display for viewing convenience) and then drawn in on a 32x32 square (or 27x27 square, for the Peano curve).

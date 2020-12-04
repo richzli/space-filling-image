@@ -56,6 +56,8 @@ function do_it() {
 
     for (var i = 0; i < 729; ++i) {
         var [x, y] = peano_coords(i);
+        x = Math.floor(x / 27 * 32);
+        y = Math.floor(y / 27 * 32);
         var color = ctx.getImageData(x, y, 1, 1).data;
         draw_stripe(p_ctx, i, color);
     }
