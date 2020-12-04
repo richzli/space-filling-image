@@ -30,7 +30,7 @@ function load_sample() {
     document.getElementById("selected-file").innerText = "sample_rev.png";
 
     var img = new Image();
-    img.src = "./sample_rev.png";
+    img.src = "./sample_rev_3.png";
     img.onload = () => {
         ctx.clearRect(0, 0, cvs.width, cvs.height);
         ctx.drawImage(img, 0, 0, cvs.width, cvs.height);

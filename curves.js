@@ -16,42 +16,44 @@ function z_order_coords(index) {
 
 function hilbert_coords(index) {
     
-    function h_recurse(idx, size, rot) {
+    function h_recurse(idx, size, rot, flip) {
         if (size == 1) return [0, 0];
 
         var halfsize = size / 2;
         var quadrant = Math.floor(idx / (halfsize * halfsize));
         var position = idx % (halfsize * halfsize);
-        var x, y = 0;
+        var x = 0, y = 0;
 
         switch (quadrant) {
             case 0:
-                [x, y] = h_recurse(position, halfsize, (rot + 1 + (rot % 2) * 2) % 4);
+                [x, y] = h_recurse(position, halfsize, 1, true);
                 break;
             case 1:
-                [x, y] = h_recurse(position, halfsize, rot);
+                [x, y] = h_recurse(position, halfsize, 0, false);
                 y += halfsize;
                 break;
             case 2:
-                [x, y] = h_recurse(position, halfsize, rot);
+                [x, y] = h_recurse(position, halfsize, 0, false);
                 x += halfsize;
                 y += halfsize;
                 break;
             case 3:
-                [x, y] = h_recurse(position, halfsize, (rot + 3 + (rot % 2) * 2) % 4);
+                [x, y] = h_recurse(position, halfsize, 3, true);
                 x += halfsize;
                 break;
+        }
+
+        if (flip) {
+            x = size - 1 - x;
         }
 
         switch (rot) {
             case 0:
                 return [x, y];
             case 1:
-                return [y, x];
-            case 2:
-                return [size - 1 - x, size - 1 - y];
+                return [y, size - 1 - x];
             case 3:
-                return [size - 1 - y, size - 1 - x];
+                return [size - 1 - y, x];
         }
     }
 
@@ -108,7 +110,7 @@ function peano_coords(index) {
                 break;
         }
 
-        var [x, y] = p_recurse(position, thirdsize, (dir + dir_delta) % 4);
+        var [x, y] = p_recurse(position, thirdsize, dir_delta);
         x += x_delta;
         y += y_delta;
 
