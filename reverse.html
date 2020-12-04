@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>Space Filling Image Reversed</title>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="sidebar-container">
+                <div class="sidebar">
+                    <h1>Space-Filling Curve Image Roller-upper</h1>
+
+                    <h2>Upload an image:</h2>
+        
+                    <div class="file-input">
+                        <div>
+                            <button id="browse">Browse...</button>
+                            <span id="selected-file">No file selected.</span>
+                            <input type="file" style="display:none;" accept="image/*" id="img-input" />
+                        </div>
+                        
+                        <div>
+                            <button id="sample" onclick="load_sample()">Use Sample Image</button>
+                        </div>
+
+                        <div>
+                            <button id="unroll" onclick="do_it()">Start Unrolling</button>
+                        </div>
+                    </div>
+
+                    <div class="text-section">
+                        <h2>What is this?</h2>
+
+                        <p>Inspired by discussions of cardinality, this program stretches an image and draws it along three different space filling curves.</p>
+                        <p>There is a more detailed writeup in the GitHub repository, linked below.</p>
+                    </div>
+                    
+                    <div class="text-section">
+                        <h2>How does it work?</h2>
+
+                        <p>Start by uploading any image into the webpage. You can also click the "Use Sample Image" button to load a sample image. It should automatically be resized to 1024x1 and displayed in the top box.</p>
+                        <p>Then click the "Start Unrolling" button to fill out the lower three images. You can right-click them to save them on your computer, if you wish.</p>
+                        <p>Want to do the calculations in the reverse direction? Click <a href="index.html">here</a>.</p>
+                    </div>
+
+                    <h4>Check out the <a href="https://github.com/richzli/space-filling-image/">Github repository</a> here!</h4>
+                    <h4 class="right-aligned">made by <a href="https://richz.li/">richard li</a></h4>
+                </div>
+            </div>
+            
+            <div class="results-container">
+                <div class="input">
+                    <div class="input-group">
+                        <canvas id="original" class="square-image" width="32" height="32"></canvas>
+                    </div>
+                </div>
+
+                <div class="results">
+                    <div class="results-group">
+                        <h3>Z-order curve</h3>
+                        <canvas id="z-order" class="line-image" width="1024" height="50"></canvas>
+                    </div>
+                    
+                    <div class="results-group">
+                        <h3>Hilbert curve</h3>
+                        <canvas id="hilbert" class="line-image" width="1024" height="50"></canvas>
+                    </div>
+                    
+                    <div class="results-group">
+                        <h3>Peano curve</h3>
+                        <canvas id="peano" class="line-image" width="729" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="curves.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
